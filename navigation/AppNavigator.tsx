@@ -1,17 +1,18 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import DetailScreen from '../screens/DetailScreen';
+import { View, Text, Image } from 'react-native';
 
-const Stack = createNativeStackNavigator();
+export default function DetailScreen({ route }: any) {
+  const { anime } = route.params;
 
-export default function AppNavigator() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Detail" component={DetailScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ padding: 20 }}>
+      <Image
+        source={{ uri: anime.images?.jpg?.image_url }}
+        style={{ width: 200, height: 300 }}
+      />
+      <Text style={{ fontSize: 20, marginTop: 10 }}>
+        {anime.title}
+      </Text>
+      <Text>{anime.synopsis || 'Sinopsis tidak tersedia'}</Text>
+    </View>
   );
 }
